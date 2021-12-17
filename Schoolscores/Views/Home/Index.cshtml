@@ -155,7 +155,7 @@
                             <div class="row">
                                 <div class='col-4'>
                                     <div class="card-body">
-                                        @if(!Model.ExamScores.Any())
+                                        @if(!Model.Studentscores.Any())
                                         {
                                             <p class="mb-1">There are currently no Exam Scores.</p>
                                         } else
@@ -168,10 +168,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach(var Score in Model.ExamScores)
+                                                    @foreach(var Examscore in Model.Studentscores)
                                                     {
                                                         <tr>
-                                                            <td>@Examscores.Score</td>
+                                                            <td>@Examscore.Testscore</td>
                                                         </tr>
                                                     }
                                                 </tbody>
