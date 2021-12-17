@@ -9,6 +9,8 @@ namespace Schoolscores.Controllers
 {
     public class StudentController : Controller
     {
+        private readonly AppDbContext _context;
+
         // GET: StudentController
         public ActionResult Index()
         {
@@ -28,10 +30,10 @@ namespace Schoolscores.Controllers
 
             {
                 Student = new Student(),
-                StudentList = DbContext.Student.Select(x => new SelectListItem
+                StudentList = _context.Students.Select(x => new SelectListItem
                 {
                     Text = $"{x.FirstName} {x.LastName}",
-                    Value = x.Id.ToString()
+                    Value = x.StudentId.ToString()
                 })
             };
             return View(vm);
@@ -57,11 +59,11 @@ namespace Schoolscores.Controllers
         {
             CreateIExamVM vm = new CreateIExamVM
             {
-                Student = DbContext.Student.FirstOrDefault(x => x.Id.ToString() == id),
-                StudentList = DbContext.Student.Select(x => new SelectListItem
+                Student = _context.Students.FirstOrDefault(x => x.I.ToString() == id),
+                StudentList = _context.Students.Select(x => new SelectListItem
                 {
                     Text = $"{x.FirstName} {x.LastName}",
-                    Value = x.Id.ToString()
+                    Value = x.StudentId.ToString()
                 })
             };
             return View(vm);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Schoolscores.Models;
+    
 
 namespace Schoolscores.Data
 {
@@ -9,7 +10,7 @@ namespace Schoolscores.Data
         {
 
         }
-        public DbSet<Teacher> Teacher { get; set; }
-        public DbSet<Student> Student { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Student> Students { get; set; }
     }
 }

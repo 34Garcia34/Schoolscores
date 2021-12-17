@@ -1,5 +1,6 @@
 ﻿@model Schoolscores.Models.ViewModels.IndexVM
 
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -167,10 +168,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach(var scores in Model.ExamScores)
+                                                    @foreach(var Score in Model.ExamScores)
                                                     {
                                                         <tr>
-                                                            <td>@Examscores.Scores</td>
+                                                            <td>@Examscores.Score</td>
                                                         </tr>
                                                     }
                                                 </tbody>
