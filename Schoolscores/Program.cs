@@ -1,7 +1,15 @@
+using Schoolscores.Data;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(opts =>
+{
+    opts.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Schoolscores; Trusted_Connection=True;MultipleActiveResultSets=true");
+});
 
 var app = builder.Build();
 

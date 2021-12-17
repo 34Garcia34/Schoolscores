@@ -11,6 +11,11 @@ namespace Schoolscores.Controllers
     {
         private readonly AppDbContext _context;
 
+        public StudentController(AppDbContext context)
+        {
+            _context = context;
+        }
+
         // GET: StudentController
         public ActionResult Index()
         {
@@ -59,7 +64,7 @@ namespace Schoolscores.Controllers
         {
             CreateIExamVM vm = new CreateIExamVM
             {
-                Student = _context.Students.FirstOrDefault(x => x.I.ToString() == id),
+                Student = _context.Students.FirstOrDefault(x => x.Id.ToString() == id),
                 StudentList = _context.Students.Select(x => new SelectListItem
                 {
                     Text = $"{x.FirstName} {x.LastName}",
@@ -104,5 +109,6 @@ namespace Schoolscores.Controllers
                 return View();
             }
         }
+
     }
 }
