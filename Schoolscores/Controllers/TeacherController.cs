@@ -23,12 +23,12 @@ namespace Schoolscores.Controllers
         // GET: TeacherController/Create
         public ActionResult Create()
         {
-            Teacher teacher = new Teacher();
+            Teachers teacher = new Teachers();
             return View(teacher);
         }
 
         [HttpPost]
-        public IActionResult Create(Teacher teacher)
+        public IActionResult Create(Teachers teacher)
         {
             _context.Teachers.Add(teacher);
             _context.SaveChanges();
@@ -59,9 +59,9 @@ namespace Schoolscores.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Teacher teacher)
+        public IActionResult Edit(Teachers teacher)
         {
-            _context.Teacher.Update(teacher);
+            _context.Teachers.Update(teacher);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
@@ -84,8 +84,8 @@ namespace Schoolscores.Controllers
 
         public IActionResult Delete(string id)
         {
-            var teacher = _context.Teacher.FirstOrDefault(x => x.TeacherId == id);
-            _context.Teacher.Remove(teacher);
+            var teacher = _context.Teachers.FirstOrDefault(x => x.TeacherId == id);
+            _context.Teachers.Remove(teacher);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
