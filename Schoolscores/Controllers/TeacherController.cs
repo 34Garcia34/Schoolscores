@@ -6,6 +6,7 @@ namespace Schoolscores.Controllers
 {
     public class TeacherController : Controller
     {
+        //make it work
         private readonly AppDbContext _context;
         public TeacherController(AppDbContext context)
         {
