@@ -37,5 +37,24 @@ namespace Schoolscores.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        public IActionResult Edit(Teacher teacher)
+        {
+            _context.Teachers.Update(teacher);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult Delete(Teacher teacher)
+        {
+            _context.Teachers.Remove(teacher);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }

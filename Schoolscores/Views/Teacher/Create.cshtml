@@ -11,10 +11,12 @@
                     <div class="card-body">
                         <div class="row m-0 p-0 g-3">
                             <div class="form-group">
-                                <label for="TeacherId">Teacher</label>
+                                <label asp-for="@Model.FirstName"></label>
+                                <input asp-for="@Model.FirstName" class="form-control" />
                             </div>
                             <div class="form-group">
-                            </div>
+                                <label asp-for="@Model.LastName"></label>
+                                <input asp-for="@Model.LastName" class="form-control" />
                         </div>
                     </div>
                     <div class="card-footer text-end">
