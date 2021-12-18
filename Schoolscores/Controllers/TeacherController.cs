@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Schoolscores.Data;
 using Schoolscores.Models;
-
+using Schoolscores.Models.ViewModels;
 namespace Schoolscores.Controllers
 {
     public class TeacherController : Controller
@@ -23,9 +24,15 @@ namespace Schoolscores.Controllers
             return View();
         }
 
+
         public ActionResult Create()
         {
             Teacher teacher = new Teacher();
+            TeacherList = _context.Teachers.Select(x => new SelectListItem
+            {
+                Text = $"{x.FirstName} {x.LastName}",
+                Value = x.TeacherId.ToString()
+            });
             return View(teacher);
         }
 
@@ -38,7 +45,9 @@ namespace Schoolscores.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
+
+
+            [HttpPost]
         public IActionResult Edit(Teacher teacher)
         {
             _context.Teachers.Update(teacher);
