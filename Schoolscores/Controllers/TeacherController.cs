@@ -8,6 +8,14 @@ namespace Schoolscores.Controllers
 {
     public class TeacherController : Controller
     {
+
+        private readonly AppDbContext _context;
+
+        public TeacherController(AppDbContext context)
+        {
+            _context = context;
+        }
+
         // GET: TeacherController
         public ActionResult Index()
         {
