@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\TeacherController.cs" />
+    <Compile Remove="Controllers\TeachersController.cs" />
     <Compile Remove="Models\ViewModels\IndexVM.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Controllers\TeacherController.cs" />
+    <None Include="Controllers\TeachersController.cs" />
   </ItemGroup>
 
   <ItemGroup>
