@@ -64,7 +64,7 @@ namespace Schoolscores.Controllers
         {
             CreateIExamVM vm = new CreateIExamVM
             {
-                Student = _context.Students.FirstOrDefault(x => x.Id.ToString() == id),
+                Student = _context.Students.FirstOrDefault(x => x.StudentId == id),
                 StudentList = _context.Students.Select(x => new SelectListItem
                 {
                     Text = $"{x.FirstName} {x.LastName}",

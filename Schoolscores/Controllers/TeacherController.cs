@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CustomerInvoiceApp.Data;
+using CustomerInvoiceApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Schoolscores.Controllers
 {
@@ -20,7 +23,17 @@ namespace Schoolscores.Controllers
         // GET: TeacherController/Create
         public ActionResult Create()
         {
-            return View();
+            Teacher teacher = new Teacher();
+            return View(teacher);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Teacher teacher)
+        {
+            _context.Teachers.Add(teacher);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: TeacherController/Create
@@ -41,7 +54,17 @@ namespace Schoolscores.Controllers
         // GET: TeacherController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Teachers teacher = _context.Teachers.FirstOrDefault(x => x.TeacherId == id);
+            return View(teacher);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Teacher teacher)
+        {
+            _context.Teacher.Update(teacher);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: TeacherController/Edit/5
@@ -59,10 +82,13 @@ namespace Schoolscores.Controllers
             }
         }
 
-        // GET: TeacherController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(string id)
         {
-            return View();
+            var teacher = _context.Teacher.FirstOrDefault(x => x.TeacherId == id);
+            _context.Teacher.Remove(teacher);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: TeacherController/Delete/5
