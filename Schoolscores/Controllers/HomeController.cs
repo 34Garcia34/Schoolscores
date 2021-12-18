@@ -21,7 +21,7 @@ namespace Schoolscores.Controllers
             {
                 Students = new List<Student>(),
                 Teachers = new List<Teacher>(),
-                ExamScores = new List<Examscores>()
+                Studentscores = new List<Examscores>()
             };
             return View(vm);
         }
