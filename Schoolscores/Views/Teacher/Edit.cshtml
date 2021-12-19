@@ -10,6 +10,7 @@
                 <form asp-action="Edit" method="post">
                     <div class="card-body">
                         <div class="row m-0 p-0 g-3">
+                            <input type="hidden" asp-for="TeacherId" />
                             <div class="form-group">
                                 <label asp-for="@Model.FirstName"></label>
                                 <input asp-for="@Model.FirstName" class="form-control" />
