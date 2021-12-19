@@ -52,7 +52,13 @@ namespace Schoolscores.Controllers
 
 
 
-            [HttpPost]
+        public IActionResult Edit(int id)
+        {
+            Teacher teacher = _context.Teachers.FirstOrDefault(x => x.TeacherId == id);
+            return View(teacher);
+        }
+
+        [HttpPost]
         public IActionResult Edit(Teacher teacher)
         {
             _context.Teachers.Update(teacher);

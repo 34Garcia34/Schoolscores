@@ -51,34 +51,19 @@ namespace Schoolscores.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // GET: StudentController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
-            CreateIExamVM vm = new CreateIExamVM
-            {
-                Student = _context.Students.FirstOrDefault(x => x.StudentId == id),
-                StudentList = _context.Students.Select(x => new SelectListItem
-                {
-                    Text = $"{x.FirstName} {x.LastName} {x.ExamScore}",
-                    Value = x.StudentId.ToString()
-                })
-            };
-            return View(vm);
+            Student student = _context.Students.FirstOrDefault(x => x.StudentId == id);
+            return View(student);
         }
 
-        // POST: StudentController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(Student student)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _context.Students.Update(student);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: StudentController/Delete/5

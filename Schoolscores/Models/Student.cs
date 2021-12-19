@@ -1,4 +1,6 @@
-﻿namespace Schoolscores.Models
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace Schoolscores.Models
 {
     public class Student
     {

@@ -9,5 +9,7 @@ namespace Schoolscores.Models.ViewModels
 
         public Teacher teacher { get; set; }
         public IEnumerable<SelectListItem> TeacherList { get; set; }
+
+
     }
 }

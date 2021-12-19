@@ -23,17 +23,12 @@ namespace Schoolscores.Controllers
         public IActionResult Index()
         {
 
-
             var vm = new HomeVM
             {
-                //Students = new List<Student>(),
-                //Teachers = new List<Teacher>(),
                 Studentscores = new List<Examscores>(),
                 Teachers = _context.Teachers.ToList(),
                 Students = _context.Students.ToList(),
-                //Studentscores = Examscores,
-                //Labels = Labels,
-                //Values = Values
+
             };
             return View(vm);
         }
