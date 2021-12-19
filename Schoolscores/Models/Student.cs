@@ -7,5 +7,6 @@
         public string? LastName { get; set; }
         public string? ExamScore { get; set; }
 
+
     }
 }

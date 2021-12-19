@@ -11,6 +11,8 @@ namespace Schoolscores.Controllers
     {
         private readonly AppDbContext _context;
 
+        public object StudentList { get; private set; }
+
         public StudentController(AppDbContext context)
         {
             _context = context;
@@ -31,32 +33,22 @@ namespace Schoolscores.Controllers
         // GET: StudentController/Create
         public ActionResult Create()
         {
-            CreateIExamVM vm = new CreateIExamVM
-
+            Student student = new Student();
+            StudentList = _context.Students.Select(x => new SelectListItem
             {
-                Student = new Student(),
-                StudentList = _context.Students.Select(x => new SelectListItem
-                {
-                    Text = $"{x.FirstName} {x.LastName}",
-                    Value = x.StudentId.ToString()
-                })
-            };
-            return View(vm);
+                Text = $"{x.FirstName} {x.LastName} {x.ExamScore}",
+                Value = x.StudentId.ToString()
+            });
+            return View(student);
         }
 
-        // POST: StudentController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(Student student)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _context.Students.Add(student);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: StudentController/Edit/5
@@ -67,7 +59,7 @@ namespace Schoolscores.Controllers
                 Student = _context.Students.FirstOrDefault(x => x.StudentId == id),
                 StudentList = _context.Students.Select(x => new SelectListItem
                 {
-                    Text = $"{x.FirstName} {x.LastName}",
+                    Text = $"{x.FirstName} {x.LastName} {x.ExamScore}",
                     Value = x.StudentId.ToString()
                 })
             };
@@ -90,24 +82,13 @@ namespace Schoolscores.Controllers
         }
 
         // GET: StudentController/Delete/5
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
-            return View();
-        }
+            var student = _context.Students.FirstOrDefault(x => x.StudentId == id);
+            _context.Students.Remove(student);
+            _context.SaveChanges();
 
-        // POST: StudentController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index", "Home");
         }
 
     }

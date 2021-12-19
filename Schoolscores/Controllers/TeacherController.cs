@@ -3,12 +3,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Schoolscores.Data;
 using Schoolscores.Models;
 using Schoolscores.Models.ViewModels;
+
 namespace Schoolscores.Controllers
 {
     public class TeacherController : Controller
     {
         //make it work
         private readonly AppDbContext _context;
+
+        public IQueryable<SelectListItem> TeacherList { get; private set; }
+
+
         public TeacherController(AppDbContext context)
         {
             _context = context;
@@ -56,8 +61,9 @@ namespace Schoolscores.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Delete(Teacher teacher)
+        public IActionResult Delete(int id)
         {
+            var teacher = _context.Teachers.FirstOrDefault(x => x.TeacherId == id);
             _context.Teachers.Remove(teacher);
             _context.SaveChanges();
 

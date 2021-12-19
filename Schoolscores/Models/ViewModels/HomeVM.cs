@@ -1,4 +1,5 @@
-﻿namespace Schoolscores.Models.ViewModels
+﻿
+namespace Schoolscores.Models.ViewModels
 {
     public class HomeVM
     {
