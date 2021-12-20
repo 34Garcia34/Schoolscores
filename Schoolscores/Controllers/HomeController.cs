@@ -25,10 +25,9 @@ namespace Schoolscores.Controllers
 
             var vm = new HomeVM
             {
-                Studentscores = new List<Examscores>(),
                 Teachers = _context.Teachers.ToList(),
                 Students = _context.Students.ToList(),
-
+                Studentscores = _context.ExamScores.ToList(),
             };
             return View(vm);
         }

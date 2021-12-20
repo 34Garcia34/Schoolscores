@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Schoolscores.Models.ViewModels;
 using Schoolscores.Models;
 using Schoolscores.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace Schoolscores.Controllers
 {
@@ -36,7 +34,7 @@ namespace Schoolscores.Controllers
             Student student = new Student();
             StudentList = _context.Students.Select(x => new SelectListItem
             {
-                Text = $"{x.FirstName} {x.LastName} {x.ExamScore}",
+                Text = $"{x.FirstName} {x.LastName}",
                 Value = x.StudentId.ToString()
             });
             return View(student);
