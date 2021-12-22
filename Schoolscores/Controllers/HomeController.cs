@@ -22,16 +22,7 @@ namespace Schoolscores.Controllers
 
         public IActionResult Index()
         {
-            //var NameList = _context.Students.GroupBy(x => x.Teachers.TeacherId).Select(i => new Examscores
-            //{
-            //    ExamId = i.Key,
-            //    Testscore = i.Sum(t => t.examscore)
 
-            //}).ToList();
-
-            //List<Examscores> examscores = NameList;
-            //List<string> labels = examscores.Select(x => x.StudentId).ToList();
-            //List<decimal> values = examscores.Select(x => x.Testscore).ToList();
             var vm = new HomeVM
             {
                 Teachers = _context.Teachers.ToList(),

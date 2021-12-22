@@ -33,6 +33,12 @@ namespace Schoolscores.Controllers
         // GET: ExamController/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> list = _context.Students.Select(x => new SelectListItem
+            {
+                Text = x.FirstName + " " + x.LastName,
+                Value = x.StudentId.ToString()
+            });
+
             Examscores exam = new Examscores();
             ExamList = _context.ExamScores.Select(x => new SelectListItem
             {

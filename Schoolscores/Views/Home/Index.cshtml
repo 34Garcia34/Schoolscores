@@ -111,7 +111,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Exam Id</th>
-                                                <th>Student Id</th>
+                                                <th>Firstname</th>
                                                 <th>Test Score</th>
                                                 <th></th>
                                             </tr>
@@ -121,7 +121,7 @@
                                             {
                                                 <tr>
                                                     <td>@examscores.ExamId</td>
-                                                    <td>@examscores.StudentId</td>
+                                                    <td>@examscores.FirstName</td>
                                                     <td>@examscores.Testscore</td>
                                                     <td class="text-center">
                                                         <a class="btn btn-sm btn-info" asp-controller="Exam" asp-action="Edit" asp-route-id="@examscores.ExamId">
