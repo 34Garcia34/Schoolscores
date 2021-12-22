@@ -1,18 +1,23 @@
-﻿@model Examscores
+﻿@model Schoolscores.Models.ViewModels.CreateIExamVM
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="card mt-3">
                 <div class="card-header">
-                    <h4 class="card-title mb-0">New Exam Score</h4>
+                    <h4 class="card-title mb-0">New Exam</h4>
                 </div>
                 <form asp-action="Create" method="post">
                     <div class="card-body">
                         <div class="row m-0 p-0 g-3">
                             <div class="form-group">
-                                <label asp-for="@Model.Testscore"></label>
-                                <input asp-for="@Model.Testscore" class="form-control" />
+                                <label for="StudentId">Student</label>
+                                <select asp-for="Student.StudentId"  class="form-control" asp-items="@Model.StudentList"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Student.examscore"></label>
+                                <input asp-for="@Model.Student.examscore" class="form-control" />
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-end">

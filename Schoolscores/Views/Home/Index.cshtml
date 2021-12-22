@@ -18,9 +18,14 @@
                         <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#StudentsTab" type="button" role="tab" aria-controls="Students" aria-selected="false">Students</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="scores-tab" data-bs-toggle="tab" data-bs-target="#ScoresTab" type="button" role="tab" aria-controls="Scores" aria-selected="false">Exam Scores</button>
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#ScoresTab" type="button" role="tab" aria-controls="Scores" aria-selected="false">Exam Scores</button>
+                    </li>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="sales-tab" data-bs-toggle="tab" data-bs-target="#salesTab" type="button" role="tab" aria-controls="sales" aria-selected="false">Sales by Country</button>
                     </li>
                 </ul>
+                @*Teacher Model Work*@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="TeachersTab" role="tabpanel" aria-labelledby="home-tab">
                         <div class="card mt-2">
@@ -78,6 +83,63 @@
                             </div>
                         </div>
                     </div>
+                    @*Exam Model Work*@
+                    <div class="tab-pane fade" id="ScoresTab" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="card mt-2">
+                            <div class="card-header">
+                                <div class="row m-0 p-0">
+                                    <div class="col-3">
+                                        <h4 class="card-title mb-0">Exam Scores</h4>
+                                    </div>
+                                    <div class="col-9 text-end">
+                                        <a class="btn btn-primary" asp-controller="Scores" asp-action="Create">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                                              <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                              <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="card-body">
+                                @if(!Model.Studentscores.Any())
+                                {
+                                    <p class="mb-0">There are currently no Exam records. Use the add button above to add an Exam Record.</p>
+                                } else
+                                {
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Exam Id</th>
+                                                <th>Student Id</th>
+                                                <th>Test Score</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach(var examscores in Model.Studentscores)
+                                            {
+                                                <tr>
+                                                    <td>@examscores.ExamId</td>
+                                                    <td>@examscores.StudentId</td>
+                                                    <td>@examscores.Testscore</td>
+                                                    <td class="text-center">
+                                                        <a class="btn btn-sm btn-info" asp-controller="Exam" asp-action="Edit" asp-route-id="@examscores.ExamId">
+                                                            Edit
+                                                        </a>
+                                                        <a class="btn btn-sm btn-danger" asp-controller="Exam" asp-action="Delete" asp-route-id="@examscores.ExamId">
+                                                            Delete
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    @*Student Model Work*@
                     <div class="tab-pane fade" id="StudentsTab" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="card mt-2">
                             <div class="card-header">
@@ -95,6 +157,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @* Student Model Work*@
                             <div class="card-body">
                                 @if(!Model.Students.Any())
                                 {
@@ -133,21 +196,21 @@
                             </div>
                         </div>
                     </div>
-                     <div class="tab-pane fade" id="ScoresTab" role="tabpanel" aria-labelledby="scores-tab">
+                     <div class="tab-pane fade" id="salesTab" role="tabpanel" aria-labelledby="sales-tab">
                         <div class="card mt-2">
                             <div class="card-header">
                                 <div class="row m-0 p-0">
                                     <div class="col-12">
-                                        <h4 class="card-title mb-0">Exam Scores</h4>
+                                        <h4 class="card-title mb-0">Sales by Country</h4>
                                     </div>
-                                    <div class="col-9 text-end">
-                                        <a class="btn btn-primary" asp-controller="Exam Score" asp-action="Create">
+                                    @*<div class="col-9 text-end">
+                                        <a class="btn btn-primary" asp-controller="Invoice" asp-action="Create">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
                                               <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                                               <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
                                             </svg>
                                         </a>
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
                             <div class="row">
@@ -155,49 +218,28 @@
                                     <div class="card-body">
                                         @if(!Model.Studentscores.Any())
                                         {
-                                            <p class="mb-1">There are currently no Exam records. Use the add button above to add a new Exam Record</p>
+                                            <p class="mb-1">There are currently no sales.</p>
                                         } else
                                         {
-                                        <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Teacher Id</th>
-                                                <th>Student Id</th>
-                                                <th>Exam Score</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach(var testscores in Model.Studentscores)
-                                                    {
+                                            <table class="table table-striped">
+                                                <thead>
                                                     <tr>
-                                                        <td>@testscores.TearcherId</td>
-                                                        <td>@testscores.StudentId</td>
-                                                        <td>@testscores.Testscore</td>
-                                                        <td class="text-center">
-                                                        <a class="btn btn-sm btn-info" asp-controller="Examscore" asp-action="Edit" asp-route-id="@testscores.ExamId">
-                                                            Edit
-                                                        </a>
-                                                        <a class="btn btn-sm btn-danger" asp-controller="Examscore" asp-action="Delete" asp-route-id="@testscores.ExamId">
-                                                            Delete
-                                                        </a>
-                                                        </td>
-                                                     </tr>
+                                                        <th>Country</th>
+                                                        <th>Total Sales</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach(var sales in Model.Studentscores)
+                                                    {
+                                                        <tr>
+                                                            <td>@sales.StudentId</td>
+                                                            <td>$@sales.Testscore</td>
+                                                        </tr>
                                                     }
-                                             }
+                                                </tbody>
+                                            </table>
+                                        }
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-@*                                    </div>
                                 </div>
                                 <div class="col-6 pb-3">
                                    <canvas id="myChart" class="text-end" width="40" height="400"></canvas>
@@ -209,9 +251,9 @@
             </div>
         </div>
     </section>
-</div>*@
+</div>
 
-@*@section Scripts {
+@section Scripts {
      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js" integrity="sha512-tMabqarPtykgDtdtSqCL3uLVM0gS1ZkUAVhRFu1vSEFgvB73niFQWJuvviDyBGBH22Lcau4rHB5p2K2T0Xvr6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script type="text/javascript">
          const ctx = document.getElementById('myChart');
@@ -222,7 +264,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Scores',
+                    label: 'Sales by Country',
                     data: countries,
                     backgroundColor: [
                         'rgba(255, 99, 132, 1)',
@@ -237,4 +279,4 @@
             borderWidth: 1
          });
      </script>
-}*@
+}

@@ -8,6 +8,11 @@ namespace Schoolscores.Models
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
 
+        public decimal examscore { get; set; }
+
+
+        public Teacher? Teachers { get; set; }
+
 
 
     }
