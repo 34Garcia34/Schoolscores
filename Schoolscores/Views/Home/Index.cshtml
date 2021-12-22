@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                            <div class="card-body">
-                                @if(!Model.Exams.Any())
+                                @if(!Model.ExamsList.Any())
                                 {
                                     <p class="mb-0">There are currently no Exam records. Use the add button above to add an Exam Record.</p>
                                 } else
@@ -117,7 +117,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach(var examscores in Model.Exams)
+                                            @foreach(var examscores in Model.ExamsList)
                                             {
                                                 <tr>
                                                     <td>@examscores.ExamId</td>

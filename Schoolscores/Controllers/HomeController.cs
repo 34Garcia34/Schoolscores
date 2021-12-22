@@ -27,6 +27,7 @@ namespace Schoolscores.Controllers
             {
                 Teachers = _context.Teachers.ToList(),
                 Students = _context.Students.ToList(),
+                ExamsList = _context.Exams.ToList(),
             };
             return View(vm);
         }
