@@ -102,7 +102,7 @@
                                 </div>
                             </div>
                            <div class="card-body">
-                                @if(!Model.Exam.Any())
+                                @if(!Model.Exams.Any())
                                 {
                                     <p class="mb-0">There are currently no Exam records. Use the add button above to add an Exam Record.</p>
                                 } else
@@ -117,11 +117,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach(var examscores in Model.Studentscores)
+                                            @foreach(var examscores in Model.Exams)
                                             {
                                                 <tr>
                                                     <td>@examscores.ExamId</td>
-                                                    <td>@examscores.Testscore</td>
+                                                    <td>@examscores.Examscores</td>
                                                     <td class="text-center">
                                                         <a class="btn btn-sm btn-info" asp-controller="Exam" asp-action="Edit" asp-route-id="@examscores.ExamId">
                                                             Edit
