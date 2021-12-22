@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Schoolscores.Models.ViewModels;
 using Schoolscores.Models;
 using Schoolscores.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,15 +36,15 @@ namespace Schoolscores.Controllers
                     Text = $"{x.FirstName} {x.LastName}",
                     Value = x.TeacherId.ToString()
                 }),
-                Exam = new Exam()
+                Examscores = new Exam()
             };
             return View(vm);
         }
 
         [HttpPost]
-        public IActionResult Create(Student student)
+        public IActionResult Create(Exam exam)
         {
-            _context.Students.Add(student);
+            _context.Exams.Add(exam);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
