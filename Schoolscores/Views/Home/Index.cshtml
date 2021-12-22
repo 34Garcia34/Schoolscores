@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     @*Exam Model Work*@
-                    <div class="tab-pane fade" id="ScoresTab" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="tab-pane fade" id="ExamTab" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="card mt-2">
                             <div class="card-header">
                                 <div class="row m-0 p-0">
@@ -92,7 +92,7 @@
                                         <h4 class="card-title mb-0">Exam Scores</h4>
                                     </div>
                                     <div class="col-9 text-end">
-                                        <a class="btn btn-primary" asp-controller="Scores" asp-action="Create">
+                                        <a class="btn btn-primary" asp-controller="Exam" asp-action="Create">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
                                               <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                                               <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
@@ -111,8 +111,8 @@
                                         <thead>
                                             <tr>
                                                 <th>Exam Id</th>
-                                                <th>Firstname</th>
-                                                <th>Test Score</th>
+                                                <th>Student Id</th>
+\                                                <th>Test Score</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -121,6 +121,7 @@
                                             {
                                                 <tr>
                                                     <td>@examscores.ExamId</td>
+                                                    <td>@examscores.StudentId</td>
                                                     <td>@examscores.Examscores</td>
                                                     <td class="text-center">
                                                         <a class="btn btn-sm btn-info" asp-controller="Exam" asp-action="Edit" asp-route-id="@examscores.ExamId">

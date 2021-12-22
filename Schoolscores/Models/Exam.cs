@@ -3,6 +3,7 @@
     public class Exam
     {
         public int ExamId { get; set; }
+        public int StudentId { get; set; }
 
         public string Examscores { get; set;}
 
