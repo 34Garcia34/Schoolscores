@@ -2,6 +2,7 @@
 using Schoolscores.Models;
 using Schoolscores.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Schoolscores.Models.ViewModels;
 
 namespace Schoolscores.Controllers
 {
@@ -35,7 +36,7 @@ namespace Schoolscores.Controllers
                     Text = $"{x.FirstName} {x.LastName}",
                     Value = x.TeacherId.ToString()
                 }),
-                Exam = new Exam()
+                Exams = new Exam()
             };
             return View(vm);
         }
