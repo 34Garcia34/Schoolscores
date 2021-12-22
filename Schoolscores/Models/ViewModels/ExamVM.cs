@@ -2,9 +2,11 @@
 
 namespace Schoolscores.Models.ViewModels
 {
-    public class CreateIExamVM
+    public class ExamVM
     {
-        public Student Student { get; set; }
+        public Exam Examscores { get; set; }
+        public IEnumerable<SelectListItem> TeachersList { get; set; }
         public IEnumerable<SelectListItem> StudentList { get; set; }
     }
 }
+

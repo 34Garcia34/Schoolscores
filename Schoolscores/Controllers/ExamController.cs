@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Schoolscores.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using Schoolscores.Models;
+using Schoolscores.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Schoolscores.Controllers
 {
@@ -11,92 +10,68 @@ namespace Schoolscores.Controllers
 
         private readonly AppDbContext _context;
 
-        public object ExamList { get; private set; }
-
         public ExamController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: ExamController
-        public ActionResult Index()
+
+        public IActionResult Index()
         {
             return View();
         }
 
-        // GET: ExamController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ExamController/Create
         public ActionResult Create()
         {
-            IEnumerable<SelectListItem> list = _context.Students.Select(x => new SelectListItem
+            ExamVM vm = new ExamVM
             {
-                Text = x.FirstName + " " + x.LastName,
-                Value = x.StudentId.ToString()
-            });
-
-            Examscores exam = new Examscores();
-            ExamList = _context.ExamScores.Select(x => new SelectListItem
-            {
-                Text = $"{x.TearcherId} {x.StudentId} {x.Testscore}",
-                Value = x.ExamId.ToString()
-            });
-            return View(exam);
+                StudentList = _context.Students.Select(x => new SelectListItem
+                {
+                    Text = $"{x.FirstName} {x.LastName}",
+                    Value = x.StudentId.ToString()
+                }),
+                TeachersList = _context.Teachers.Select(x => new SelectListItem
+                {
+                    Text = $"{x.FirstName} {x.LastName}",
+                    Value = x.TeacherId.ToString()
+                }),
+                Exam = new Exam()
+            };
+            return View(vm);
         }
 
         [HttpPost]
-        public IActionResult Create(Examscores exam)
+        public IActionResult Create(Student student)
         {
-            _context.ExamScores.Add(exam);
+            _context.Students.Add(student);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
 
-        // GET: ExamController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
-            return View();
+            Exam exam = _context.Exams.FirstOrDefault(x => x.ExamId == id);
+            return View(exam);
         }
 
-        // POST: ExamController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(Exam exam)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _context.Exams.Update(exam);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
-        // GET: ExamController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: StudentController/Delete/5
+        public IActionResult Delete(int id)
         {
-            return View();
-        }
+            var exam = _context.Exams.FirstOrDefault(x => x.ExamId == id);
+            _context.Exams.Remove(exam);
+            _context.SaveChanges();
 
-        // POST: ExamController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
