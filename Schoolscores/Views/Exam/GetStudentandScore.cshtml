@@ -1,0 +1,35 @@
+﻿@model Student
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4 class="card-title mb-0">@Model.FirstName @Model.LastName</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Id: @Model.StudentId</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            @foreach(var Exam in Model.exams)
+            {
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Exams</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Id: @Exam.ExamId</li>
+                            <li class="list-group-item">Exam Scores: @Exam.Examscores</li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

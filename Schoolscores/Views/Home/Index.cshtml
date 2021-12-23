@@ -22,7 +22,7 @@
                     </li>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="sales-tab" data-bs-toggle="tab" data-bs-target="#salesTab" type="button" role="tab" aria-controls="sales" aria-selected="false">Sales by Country</button>
+                        <button class="nav-link" id="Grades-tab" data-bs-toggle="tab" data-bs-target="#GradesTab" type="button" role="tab" aria-controls="Grades" aria-selected="false">Grades By Exam Scores</button>
                     </li>
                 </ul>
                 @*Teacher Model Work*@
@@ -196,44 +196,44 @@
                             </div>
                         </div>
                     </div>
-                     <div class="tab-pane fade" id="salesTab" role="tabpanel" aria-labelledby="sales-tab">
+                     <div class="tab-pane fade" id="GradesTab" role="tabpanel" aria-labelledby="Grades-tab">
                         <div class="card mt-2">
                             <div class="card-header">
                                 <div class="row m-0 p-0">
                                     <div class="col-12">
-                                        <h4 class="card-title mb-0">Sales by Country</h4>
+                                        <h4 class="card-title mb-0">Grades By Exam Scores</h4>
                                     </div>
-                                    @*<div class="col-9 text-end">
+                                    <div class="col-9 text-end">
                                         <a class="btn btn-primary" asp-controller="Invoice" asp-action="Create">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
                                               <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                                               <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
                                             </svg>
                                         </a>
-                                    </div>*@
-@*                                </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class='col-4'>
                                     <div class="card-body">
-                                        @if(!Model.Studentscores.Any())
+                                        @if(!Model.ExamsList.Any())
                                         {
-                                            <p class="mb-1">There are currently no sales.</p>
+                                            <p class="mb-1">There are currently no Exam Scores.</p>
                                         } else
                                         {
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Country</th>
-                                                        <th>Total Sales</th>
+                                                        <th>Students Id</th>
+                                                        <th>Total Exam Scores</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach(var sales in Model.Studentscores)
+                                                    @foreach(var exam in Model.ExamsList)
                                                     {
                                                         <tr>
-                                                            <td>@sales.StudentId</td>
-                                                            <td>$@sales.Testscore</td>
+                                                            <td>@exam.StudentId</td>
+                                                            <td>$@exam.Examscores</td>
                                                         </tr>
                                                     }
                                                 </tbody>
@@ -251,7 +251,7 @@
             </div>
         </div>
     </section>
-</div>*@
+</div>
 
 @section Scripts {
      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js" integrity="sha512-tMabqarPtykgDtdtSqCL3uLVM0gS1ZkUAVhRFu1vSEFgvB73niFQWJuvviDyBGBH22Lcau4rHB5p2K2T0Xvr6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -264,7 +264,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Sales by Country',
+                    label: 'Grades By Exam Scores',
                     data: countries,
                     backgroundColor: [
                         'rgba(255, 99, 132, 1)',

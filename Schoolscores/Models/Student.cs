@@ -9,6 +9,9 @@ namespace Schoolscores.Models
         public string? LastName { get; set; }
         public Teacher? Teachers { get; set; }
 
+        public ICollection<Exam>? exams { get; set; }
+
+
 
 
     }
