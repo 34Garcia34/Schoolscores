@@ -10,7 +10,10 @@ namespace Schoolscores.Models
         [Display(Name = "Teacher")]
         public int TeacherId { get; set; }
 
-        public string Examscores { get; set;}
+        public char Grade { get; set; } 
+
+        public decimal Examscores { get; set;}
+
 
     }
 }

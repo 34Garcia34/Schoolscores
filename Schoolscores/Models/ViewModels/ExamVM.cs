@@ -5,6 +5,9 @@ namespace Schoolscores.Models.ViewModels
     public class ExamVM
     {
         public Exam Exams { get; set; }
+
+        public char Grade { get; set; }
+
         public IEnumerable<SelectListItem> TeachersList { get; set; }
         public IEnumerable<SelectListItem> StudentList { get; set; }
     }

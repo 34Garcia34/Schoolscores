@@ -45,11 +45,35 @@ namespace Schoolscores.Controllers
         [HttpPost]
         public IActionResult Create(ExamVM exam)
         {
+            switch (exam.Exams.Examscores)
+            {
+                case decimal number when number >= 90:
+                    exam.Grade = 'A';
+                    break;
+                case decimal number when number >= 80:
+                    exam.Grade = 'B';
+                    break;
+                case decimal number when number >= 70:
+                    exam.Grade = 'C';
+                    break;
+                case decimal number when number >= 60:
+                    exam.Grade = 'D';
+                    break;
+                case decimal number when number <= 59:
+                    exam.Grade = 'F';
+                    break;
+                default:
+                    break;
+
+            }
             _context.Exams.Add(exam.Exams);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+
+
         }
+
 
         public IActionResult Edit(int id)
         {
