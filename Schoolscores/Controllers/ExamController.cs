@@ -43,9 +43,9 @@ namespace Schoolscores.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Exam exam)
+        public IActionResult Create(ExamVM exam)
         {
-            _context.Exams.Add(exam);
+            _context.Exams.Add(exam.Exams);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");

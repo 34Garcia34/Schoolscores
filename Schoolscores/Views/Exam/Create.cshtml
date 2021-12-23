@@ -1,4 +1,4 @@
-﻿@model Exam
+﻿@model Schoolscores.Models.ViewModels.ExamVM
 
 <div class="container">
     <div class="row justify-content-center">
@@ -11,12 +11,17 @@
                     <div class="card-body">
                         <div class="row m-0 p-0 g-3">
                             <div class="form-group">
-                                <label asp-for="@Model.ExamId"></label>
-                                <input asp-for="@Model.ExamId" class="form-control" />
+                                <label asp-for="@Model.Exams.StudentId"></label>
+                                <select asp-for="@Model.Exams.StudentId" class="form-control" asp-items="@Model.StudentList"></select>
                             </div>
                             <div class="form-group">
-                                <label asp-for="@Model.Examscores"></label>
-                                <input asp-for="@Model.Examscores" class="form-control" />
+                                <label asp-for="@Model.Exams.TeacherId"></label>
+                                <select asp-for="@Model.Exams.TeacherId" class="form-control" asp-items="@Model.TeachersList"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Exams.Examscores"></label>
+                                <input asp-for="@Model.Exams.Examscores" class="form-control" />
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-end">
