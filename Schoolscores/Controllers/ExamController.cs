@@ -48,19 +48,19 @@ namespace Schoolscores.Controllers
             switch (exam.Exams.Examscores)
             {
                 case decimal number when number >= 90:
-                    exam.Grade = 'A';
+                    exam.Exams.Grade = 'A';
                     break;
                 case decimal number when number >= 80:
-                    exam.Grade = 'B';
+                    exam.Exams.Grade = 'B';
                     break;
                 case decimal number when number >= 70:
-                    exam.Grade = 'C';
+                    exam.Exams.Grade = 'C';
                     break;
                 case decimal number when number >= 60:
-                    exam.Grade = 'D';
+                    exam.Exams.Grade = 'D';
                     break;
                 case decimal number when number >= 60:
-                    exam.Grade = 'F';
+                    exam.Exams.Grade = 'F';
                     break;
                 default:
                     break;
