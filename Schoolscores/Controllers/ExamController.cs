@@ -59,7 +59,7 @@ namespace Schoolscores.Controllers
                 case decimal number when number >= 60:
                     exam.Grade = 'D';
                     break;
-                case decimal number when number <= 59:
+                case decimal number when number >= 60:
                     exam.Grade = 'F';
                     break;
                 default:

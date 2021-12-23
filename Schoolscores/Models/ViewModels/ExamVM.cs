@@ -6,7 +6,8 @@ namespace Schoolscores.Models.ViewModels
     {
         public Exam Exams { get; set; }
 
-        public char Grade { get; set; }
+        public decimal? Grade { get; set; }    
+
 
         public IEnumerable<SelectListItem> TeachersList { get; set; }
         public IEnumerable<SelectListItem> StudentList { get; set; }
